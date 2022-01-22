@@ -1,18 +1,26 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div>
+    <p class="title">首页</p>
+    <p>欢迎你！{{ info.username }}</p>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
+import { defineComponent, computed } from 'vue'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   name: 'Home',
-  components: {
-    HelloWorld
+  setup () {
+    const store = useStore()
+
+    return {
+      info: computed(() => store.state.user.info)
+    }
   }
 })
 </script>
+
+<style scoped>
+
+</style>
